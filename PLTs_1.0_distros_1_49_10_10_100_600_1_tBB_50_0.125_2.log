@@ -1,0 +1,397 @@
+Analyzing tau (ms):  1.0
+#######################################################################
+Zone  0
+Limits: ( 11.0 , 39.0 )
+------------------------------------------------------------
+Mean absolute velocity (current zone) [um/ms]                             :  0.2874791195177871
+Diffusion Coefficient (v^2*dt*0.5) [um^2/ms]                              :  0.04132212207936106
+MSD non-linear fitting (a*x^b), params as (a,b) [um^2,ms]                 :  (1.8867817166573326, 0.657076996055309)
+Avg Distance from Walls linear fitting (a*x + b), params as (a,b) [um,ms] :  (-0.001280331326522166, 17.542715868656746)
+------------------------------------------------------------
+Checking for sign.
+Positive velocities (%) :  51.0
+Negative velocities (%) :  49.0
+------------------------------------------------------------
+Checking for normality.
+kurtosis of dataset (whole range, i.e., body & tail) :  41.57975772111598
+Number of successful normality tests                 :  0
+Number of failed normality tests                     :  7
+End of Checking for normality.
+------------------------------------------------------------
+Analyze the tail of the distribution.
+Number of samples to do statistics (whole range, i.e., body & tail) :  27042
+Number of samples to do statistics (tail-only)                      :  2705
+------------------------------------------------------------
+halfcauchy
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  294
+params_optimal                            :  (1.44109999902861, 0.4809974634933625)
+xmin_optimal                              :  1.4410999999999987
+ecdf(xmin_optimal)                        :  98.92  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.64
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  True
+As good as possible alternative (dist,p)  :  ('pareto', 0.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2214
+params_relaxed                            :  (0.6370999965069846, 0.1823601976710159)
+xmin_relaxed                              :  0.6371000000000002
+ecdf(xmin_relaxed)                        :  91.82  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.11
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.36
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  992
+MSD non-linear fitting [um^2,ms]          :  (5.1158260508951745, 0.8816749021169565)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0014977681365745967, 203.58715909005815)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  1981
+MSD non-linear fitting [um^2,ms]          :  (37.72556444725114, 0.7491471706609633)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0040835160304919516, 207.6020425758339)
+------------------------------------------------------------
+burr12
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  2185
+params_optimal                            :  (247.68813211936788, 0.008658795786709084, 0.13793549591737642, 0.5026367829334712)
+xmin_optimal                              :  0.6392000000000024
+ecdf(xmin_optimal)                        :  91.92  (%)
+(p-val) kstest - tail only - xmin_optimal :  1.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  True
+As good as possible alternative (dist,p)  :  ('pareto', 0.00307)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2185
+params_relaxed                            :  (247.68813211936788, 0.008658795786709084, 0.13793549591737642, 0.5026367829334712)
+xmin_relaxed                              :  0.6392000000000024
+ecdf(xmin_relaxed)                        :  91.92  (%)
+(p-val) kstest - tail only - xmin_relaxed :  1.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.54
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  4660
+MSD non-linear fitting [um^2,ms]          :  (0.3843988161248968, 0.9165453594028106)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.008327323441520651, 140.6122307255765)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  4684
+MSD non-linear fitting [um^2,ms]          :  (0.011338628599535258, 1.3046617761944346)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.008354278660123957, 138.6813627852396)
+------------------------------------------------------------
+burr
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  1875
+params_optimal                            :  (1.4185629639624744, 0.6824948318388899, 0.6763999999999188, 0.30551103196448093)
+xmin_optimal                              :  0.6763999999999992
+ecdf(xmin_optimal)                        :  93.07  (%)
+(p-val) kstest - tail only - xmin_optimal :  1.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  False
+As good as possible alternative (dist,p)  :  ('pareto', 0.43872)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2211
+params_relaxed                            :  (1.5129215501721345, 0.5802797363155476, 0.6371586856006539, 0.3341344904560324)
+xmin_relaxed                              :  0.6372
+ecdf(xmin_relaxed)                        :  91.83  (%)
+(p-val) kstest - tail only - xmin_relaxed :  1.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.61
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  559
+MSD non-linear fitting [um^2,ms]          :  (2.520148288743608, 0.8828442318384702)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0004751481441063627, 199.92526088469026)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  451
+MSD non-linear fitting [um^2,ms]          :  (0.7186102783981039, 0.9820108941211618)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00045087722119641337, 210.7291779866595)
+------------------------------------------------------------
+pareto
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  2242
+params_optimal                            :  (2.1323419110165496, 0.14297636248234824, 0.4918236375010627)
+xmin_optimal                              :  0.6348000000000003
+ecdf(xmin_optimal)                        :  91.71  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.99
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  False
+As good as possible alternative (dist,p)  :  ('None', 1.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2242
+params_relaxed                            :  (2.1323419110165496, 0.14297636248234824, 0.4918236375010627)
+xmin_relaxed                              :  0.6348000000000003
+ecdf(xmin_relaxed)                        :  91.71  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.99
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.77
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  306
+MSD non-linear fitting [um^2,ms]          :  (0.5717884289862796, 0.9159532508432547)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00013468125965894763, 203.22883655751139)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  343
+MSD non-linear fitting [um^2,ms]          :  (0.3261932671217613, 0.9754663816025366)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00013812780786284917, 201.27327000983385)
+------------------------------------------------------------
+lognorm
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  327
+params_optimal                            :  (1.2196380827303812, 1.3288575747805678, 0.5130498240707824)
+xmin_optimal                              :  1.3519000000000005
+ecdf(xmin_optimal)                        :  98.79  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.91
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  False
+As good as possible alternative (dist,p)  :  ('pareto', 0.3275)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2534
+params_relaxed                            :  (1.2953817293142442, 0.5956208219632532, 0.18272061061342615)
+xmin_relaxed                              :  0.6007000000000016
+ecdf(xmin_relaxed)                        :  90.63  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.22
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.7
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  307
+MSD non-linear fitting [um^2,ms]          :  (0.3397661700278214, 0.9576504872464067)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00016967064587158448, 208.74100635114888)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  268
+MSD non-linear fitting [um^2,ms]          :  (0.28558781175386994, 0.969707306553207)
+Avg Dist Walls linear fitting [um,ms]     :  (-6.286552176916316e-05, 203.5563396239359)
+------------------------------------------------------------
+weibull_min
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  195
+params_optimal                            :  (0.8045938008536124, 1.7074999999999994, 1.0420798845169401)
+xmin_optimal                              :  1.7074999999999996
+ecdf(xmin_optimal)                        :  99.28  (%)
+(p-val) kstest - tail only - xmin_optimal :  1.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  False
+As good as possible alternative (dist,p)  :  ('None', 1.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2295
+params_relaxed                            :  (0.7603833819595899, 0.6284999999999988, 0.3190316070288384)
+xmin_relaxed                              :  0.628499999999999
+ecdf(xmin_relaxed)                        :  91.52  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.01
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.47
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  342
+MSD non-linear fitting [um^2,ms]          :  (0.19227617608676414, 0.9997685421174074)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00012245407733623255, 205.91967853877762)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  307
+MSD non-linear fitting [um^2,ms]          :  (0.16547187687712023, 1.0015848906552238)
+Avg Dist Walls linear fitting [um,ms]     :  (-1.4355427997149524e-05, 202.2243982118503)
+------------------------------------------------------------
+fisk
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  156
+params_optimal                            :  (1.3885112686194816, 1.8378159732684622, 0.7551822060972853)
+xmin_optimal                              :  1.8552999999999997
+ecdf(xmin_optimal)                        :  99.43  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.93
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  True
+As good as possible alternative (dist,p)  :  ('lognorm', 0.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2525
+params_relaxed                            :  (1.280749469534038, 0.6009916130403467, 0.17932158162222847)
+xmin_relaxed                              :  0.6014000000000017
+ecdf(xmin_relaxed)                        :  90.67  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.26
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.43
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  454
+MSD non-linear fitting [um^2,ms]          :  (0.7108467438818317, 0.9558338094166022)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0003837243567379883, 203.04246955942511)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  853
+MSD non-linear fitting [um^2,ms]          :  (2.778150634548948, 0.9346169873076096)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.001257181581804105, 204.77495977248745)
+------------------------------------------------------------
+invweibull
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  169
+params_optimal                            :  (1.4251417046052124, 1.5139808625088622, 0.7336004062719668)
+xmin_optimal                              :  1.7928999999999995
+ecdf(xmin_optimal)                        :  99.38  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.7
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  True
+As good as possible alternative (dist,p)  :  ('invgauss', 0.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2165
+params_relaxed                            :  (1.1819863616880077, 0.5936037184782323, 0.16392322806139942)
+xmin_relaxed                              :  0.642000000000003
+ecdf(xmin_relaxed)                        :  92.0  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.3
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  395
+MSD non-linear fitting [um^2,ms]          :  (0.5657244765407875, 0.9824196220584002)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0003750173590100165, 206.259078610389)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  1059
+MSD non-linear fitting [um^2,ms]          :  (5.335434049833275, 0.8866497410687088)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0016794277204361717, 204.7176026033237)
+------------------------------------------------------------
+levy
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  102
+params_optimal                            :  (2.3032001158057103, 0.392139130954719)
+xmin_optimal                              :  2.3523999999999994
+ecdf(xmin_optimal)                        :  99.63  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  True
+As good as possible alternative (dist,p)  :  ('pareto', 0.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2167
+params_relaxed                            :  (0.6306745095231547, 0.09472484119523143)
+xmin_relaxed                              :  0.6419000000000015
+ecdf(xmin_relaxed)                        :  91.99  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.01
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  3939
+MSD non-linear fitting [um^2,ms]          :  (114.48017504635277, 0.6690357641015465)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.008047472866930092, 181.09264457100352)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  4807
+MSD non-linear fitting [um^2,ms]          :  (33270.330029800454, 0.10084713350816805)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.008661505118747413, 71.83921685932688)
+------------------------------------------------------------
+invgauss
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  328
+params_optimal                            :  (1.8901825395213567, 1.279206123959721, 0.5540901053590064)
+xmin_optimal                              :  1.351300000000002
+ecdf(xmin_optimal)                        :  98.79  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.88
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  False
+As good as possible alternative (dist,p)  :  ('pareto', 0.34605)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2560
+params_relaxed                            :  (2.467188822589499, 0.5773717658439688, 0.17088752257735057)
+xmin_relaxed                              :  0.5981000000000005
+ecdf(xmin_relaxed)                        :  90.54  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.06
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.63
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  313
+MSD non-linear fitting [um^2,ms]          :  (0.2227492076122138, 0.9885386235659019)
+Avg Dist Walls linear fitting [um,ms]     :  (-4.986215771204496e-05, 204.23492248821069)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  275
+MSD non-linear fitting [um^2,ms]          :  (0.23747516047167874, 0.9777381112175837)
+Avg Dist Walls linear fitting [um,ms]     :  (-8.398554363638133e-05, 204.43717415377992)
+------------------------------------------------------------
+expon
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  117
+params_optimal                            :  (2.1447000000000003, 1.3904224786324781)
+xmin_optimal                              :  2.1447000000000003
+ecdf(xmin_optimal)                        :  99.57  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.42
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  False
+As good as possible alternative (dist,p)  :  ('weibull_min', 0.40136)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  2181
+params_relaxed                            :  (0.6395000000000053, 0.42547434662998085)
+xmin_relaxed                              :  0.6395000000000053
+ecdf(xmin_relaxed)                        :  91.94  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.01
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  298
+MSD non-linear fitting [um^2,ms]          :  (0.3220736549588859, 0.9452310829156949)
+Avg Dist Walls linear fitting [um,ms]     :  (-5.1469234453804445e-05, 202.78079359257717)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  281
+MSD non-linear fitting [um^2,ms]          :  (0.20418576571582997, 0.9785694761906331)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00014054533645769352, 204.18936619161252)
+------------------------------------------------------------
+halfnorm
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Optimal fitting                             
+Number of samples xmin_optimal            :  27042
+params_optimal                            :  (-2.9230555855970918e-09, 0.4503502755523259)
+xmin_optimal                              :  0.0
+ecdf(xmin_optimal)                        :  0.02  (%)
+(p-val) kstest - tail only - xmin_optimal :  0.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+strongly_rejected                         :  True
+As good as possible alternative (dist,p)  :  ('weibull_min', 0.0)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+Relaxed fitting                             
+Number of samples xmin_relaxed            :  27042
+params_relaxed                            :  (-2.9230555855970918e-09, 0.4503502755523259)
+xmin_relaxed                              :  0.0
+ecdf(xmin_relaxed)                        :  0.02  (%)
+(p-val) kstest - tail only - xmin_relaxed :  0.0
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+p-val of relaxed model                    :  0.5
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for optimal model.
+deposited PLTs (per uL)                   :  256
+MSD non-linear fitting [um^2,ms]          :  (0.2305924830716916, 0.9771171073050415)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.00014067034547575764, 209.2741890537326)
+_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.
+One-Zone Simulation for relaxed model.
+deposited PLTs (per uL)                   :  297
+MSD non-linear fitting [um^2,ms]          :  (0.22332869330357327, 0.9857893670923106)
+Avg Dist Walls linear fitting [um,ms]     :  (-0.0001312478338965722, 206.44974800287724)
+------------------------------------------------------------
+#######################################################################

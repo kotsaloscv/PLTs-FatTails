@@ -1,22 +1,20 @@
 ###############################################################################
 # This python script implements the statistical analysis presented in:
 # Kotsalos et al.: Anomalous Platelet Transport & Fat-Tailed Distributions
-# ArXiv: 
+# arXiv: 
 # 
-# It reads the positions of PLTs (center of mass) through time (stored in PLTs_... directory)
-# Every file in the directory stores the individual trajectory of a PLT in the 
-# form: (t,x,y,z)
-# This is how our simulations are built:
-# t: refers to fluid time steps. It should be multiplied by the fluid time-step 
-# to return physical time
-# x,z: vorticity, flow directions respectively
+# It reads the positions of PLTs (center of mass) through time (stored in PLTs_tau_X directory)
+# Every file in the directory stores the individual trajectory of a PLT in the form: (t,x,y,z)
+# This is how our simulations are built (tailored on DNS output):
+# t: refers to fluid time steps. It should be multiplied by the fluid time-step to return physical time
+# x,z: vorticity, flow directions, respectively
 # y: wall-bounded direction
 # The above order can change with the right modifications.
 # 
-# The given PLTs directory inlcudes the positions of 95 platelets for a simulation
+# The given PLTs directory inlcudes the positions of 95 platelets from a simulation
 # executed for 1s physical time, in a box of 50^3 um^3, and constant shear rate
 # 100 s^-1. The DNS are sampled at 1ms window and the numerical time step is
-# 0.125 us according to the Lattice Boltzmann Method.
+# 0.125 us according to the Lattice Boltzmann Method (see paper for a complete overview).
 ###############################################################################
 # Contact:
 # Christos Kotsalos
@@ -24,8 +22,8 @@
 # University of Geneva
 # 7 Route de Drize
 # 1227 Carouge, Switzerland
-# *  kotsaloscv@gmail.com
-# ** christos.kotsalos@unige.ch
+# kotsaloscv@gmail.com
+# christos.kotsalos@unige.ch
 ###############################################################################
 # Attribution 4.0 International (CC BY 4.0)
 # You are free to:
@@ -64,7 +62,7 @@ def numericalSort(value):
 
 def upper_bounce_back(pos, domainSize):
     '''
-    Used by PLTs class for bounce back boundary conditions
+    Used by PLTs class for top wall bounce back boundary condition
     '''
     if (pos > domainSize):
         jump = pos/domainSize
@@ -77,7 +75,7 @@ def upper_bounce_back(pos, domainSize):
 
 def distFromWallsPLTs(y, b, t):
     '''
-    Used by PLTs class
+    Used by PLTs class to compute avg distance from walls
     y : PLT position
     b : bottom (0.)
     t : top (domainSize)
@@ -88,6 +86,7 @@ class PLTs:
     '''
     PLT Deposition Reduced Simulations:
     Simulate the Impact-R platelet function analyser
+    PLTs that cross the lower boundary are considered deposited
     '''
 
     def __init__(self, numPLTs_, dt_, domainSize_,
@@ -103,7 +102,7 @@ class PLTs:
 
         self.distros_invECDF = distros_invECDF_ # inverse Empirical Distribution Function per zone
         self.distros_tail    = distros_tail_ # tail distribution per zone (refer to PLT velocities)
-        self.xmins           = xmins_ # lower bound for tail per zone
+        self.xmins           = xmins_ # lower bound (x_min) for tail per zone
 
         self.zones = len(distros_invECDF_)
 
@@ -118,7 +117,7 @@ class PLTs:
             self.y.append(pos[inds])
             self.y0.append(np.copy(self.y[-1]))
 
-        # Compute MSD & average distance from walls
+        # MSD & average distance from walls
         self.t             = [0.,]
         self.MSD           = [0.,]
         self.distFromWalls = [0.,]
@@ -130,7 +129,7 @@ class PLTs:
 
     def advance(self, T):
         '''
-        Advance the system trhough time
+        Advance the system through time
         '''
         upper_bounce_back_np = np.vectorize(upper_bounce_back)
         distFromWallsPLTs_np = np.vectorize(distFromWallsPLTs)
@@ -185,7 +184,7 @@ class PLTs:
                 self.y[z]  = self.y[z][inds]
                 self.y0[z] = self.y0[z][inds]
 
-                # Transfer PLTs between zones
+                # Transfer PLTs between zones (conservation of mass)
                 for z_ in range(self.zones):
                     if (z_ == z):
                         continue
@@ -205,6 +204,7 @@ class PLTs:
             if (bulk_PLTs == 0):
                 break
 
+            # MSD & average distance from walls
             self.t.append(self.t[-1]+self.dt)
             self.MSD.append(0.)
             self.distFromWalls.append(0.)
@@ -217,7 +217,7 @@ class PLTs:
     def depositedPLTs(self):
         '''
         return the number of deposited PLTs,
-        deposition: a PLT that crosses the bottom boundary is considered deposited
+        deposition: PLTs that cross the bottom boundary are considered deposited (just a simplification)
         '''
         bulk_PLTs = 0
         for z in range(self.zones):
@@ -276,6 +276,7 @@ def find_xminOpt_distro(data, dist_name, upper_bound = np.inf):
         
         return stats.kstest(data_tmp, dist_name, params_tmp)[1]
 
+    # multi-processing part (num_threads)
     p_vals = Parallel(n_jobs=num_threads)(delayed(find_xmin_core)(xmin_optimal) for xmin_optimal in data[:-min_sample_size])
 
     # Optimal xmin is the one that maximizes the p-value and minimizes the statistic (D_value)
@@ -284,7 +285,7 @@ def find_xminOpt_distro(data, dist_name, upper_bound = np.inf):
 
 def LLR_test(data, dist_name_1, dist_name_2):
     '''
-    Log-Likelihood Ratio test
+    Log-Likelihood Ratio test, see Clauset_2009 (Power-Law Distributions in Empirical Data)
     '''
     n = data.shape[0]
 
@@ -308,7 +309,7 @@ def LLR_test(data, dist_name_1, dist_name_2):
     from scipy.special import erfc
     p = erfc(abs(LLR) / np.sqrt(2.*n*sigma_sq))
 
-    # The lower the p, the more sure about the direction of LLR
+    # The lower the p, the more trust on the direction of LLR
     return LLR, p
 
 
@@ -321,7 +322,7 @@ def meta_process(tau):
     import warnings
     warnings.filterwarnings('ignore')
 
-    # Folder where you store the PLT centers of masses per DNS time step
+    # Folder where you store the PLT positions (center of mass - COM) per DNS time steps
     data_location = which_bodies + '_tau_' + str(tau) + '/'
 
     numBodies = 0
@@ -346,7 +347,7 @@ def meta_process(tau):
         zones_MSD.append(np.array([], dtype=np.float64))
         zones_distFromWalls.append(np.array([], dtype=np.float64))
 
-    # Var that help us find the mean free path/ time (MFP/T) in comparison with the ground truth (gT)
+    # Var that help us find the mean free path/ time (MFP/T) in comparison with the ground truth (gT, path from DNS)
     integrals_tau = []
     
     numBodies = 0
@@ -354,8 +355,8 @@ def meta_process(tau):
 
         df = pd.read_csv(log, delimiter=',', header=None, names=names_, usecols=usecols_, dtype={'t': np.float64, 'y': np.float64, 'z': np.float64})
 
-        # Time in the original files interprets to how many DNS time steps,
-        # this is why we multiply here with DNS time step to convert it into physical time in ms
+        # Time in the original files interprets to how many DNS fluid time steps,
+        # this is why we multiply here with DNS fluid time step to convert it into physical time in ms
         df = df.loc[df['t']*dt_f >= From_]
         df = df.loc[df['t']*dt_f <= To_]
         df = df.reset_index(drop=True)
@@ -570,7 +571,7 @@ def meta_process(tau):
             distros_invECDF.append({'inv_ecdf':inv_ecdf, 'lb':ecdf(np.min(data)), 'ub':ecdf(np.max(data))})
             
             #######################################################################
-            tail_P = 0.90 # no need to search the whole domain for the lower bound (x_min). Search from the 90th percentile.
+            tail_P = 0.90 # no need to search the whole domain for the lower bound (x_min). Search from the 90th percentile and above.
             print("Number of samples to do statistics (whole range, i.e., body & tail) : ", data.shape[0])
             print("Number of samples to do statistics (tail-only)                      : ", data[data >= inv_ecdf(tail_P)].shape[0])
             #######################################################################
@@ -578,15 +579,15 @@ def meta_process(tau):
             print('------------------------------------------------------------')
             # https://en.wikipedia.org/wiki/Heavy-tailed_distribution#Common_heavy-tailed_distributions
             # We focus on fat-tails and more specifically on power laws (see paper for more)
-            # heavy-tails we kept it for legacy reasons
+            # heavy-tails term: kept it for legacy reasons
             wikipedia_heavy_tailed_distros = [
                 'halfcauchy',
                 'burr12', 'burr',
                 'pareto',
                 'lognorm',
                 'weibull_min',
-                'fisk', # log-logistic distribution
-                'invweibull', # Fréchet distribution
+                'fisk',
+                'invweibull',
                 'levy',
                 'invgauss' # see Klaus_2011 (Statistical Analyses Support Power Law Distributions Found in Neuronal Avalanches)
             ]
@@ -715,9 +716,9 @@ def meta_process(tau):
 
                 print('_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.')
                 print('One-Zone Simulation for optimal model.')
-                # int(4808*0.82): 4808 number of activated PLTs per ul. We deal with 0.82ul -> 4808*0.82
+                # int(4808*0.82): 4808 number of activated PLTs per ul (see Chopard_2017 - A physical description of the adhesion and aggregation of platelets). We deal with 0.82ul -> 4808*0.82
                 # tau is the time step of the reduced simulation in ms
-                # 820um is the height of Impact-R PLT function analyser
+                # 820um is the height of Impact-R PLT function analyser (and thus the *0.82)
                 PLTs_ = PLTs(int(4808*0.82), tau, 820.0, [{'inv_ecdf':inv_ecdf, 'lb':ecdf(np.min(data)), 'ub':ecdf(np.max(data))}], [{'distro':distro, 'params':params_optimal}], [xmin_optimal])
                 try:
                     PLTs_.advance(int(20000/tau))
@@ -775,7 +776,7 @@ which_bodies = sys.argv[1]
 # tau to analyze (in milliseconds)
 tau_ = float(sys.argv[2])
 
-# different kind of analysis: (see paper for more info on the different analyses)
+# different kind of analysis: (see paper for more info on the different types)
 # - MFP: Mean Free Path/Time
 # - distros: PLT velocities distributions
 # - MSD: Mean Square Displament & Diffusion Coefficient from DNS data
@@ -786,7 +787,7 @@ do_what = sys.argv[3]
 bottom_wall = float(sys.argv[4])
 top_wall    = float(sys.argv[5])
 
-# CFL thickness (in micrometers-um)
+# CFL thickness (in micrometers-um) or zone to exclude to avoid wall effects
 CFL_b = float(sys.argv[6])
 CFL_t = float(sys.argv[7])
 
@@ -794,13 +795,13 @@ CFL_t = float(sys.argv[7])
 From_ = float(sys.argv[8])
 To_ = float(sys.argv[9])
 
-# number of zones to analyze velocity distibution
+# number of zones to analyze velocity distibution (split the domain into zones)
 zones_ = int(sys.argv[10])
 
 # Top Boundary: tBB (top Bounce Back) or tCFL (top Trapping in the CFL) || NA
 sim_BC_ = sys.argv[11]
 
-# Chanel Length
+# Chanel Length (lateral dimension)
 chanel_len = float(sys.argv[12])
 
 # Fluid timestep (us) from DNS

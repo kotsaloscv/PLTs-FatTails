@@ -84,7 +84,7 @@ def distFromWallsPLTs(y, b, t):
 
 class PLTs:
     '''
-    PLT Deposition Reduced Simulations:
+    Random Walk Simulations:
     Simulate the Impact-R platelet function analyser
     PLTs that cross the lower boundary are considered deposited
     '''
@@ -495,7 +495,7 @@ def meta_process(tau):
         # significance level for p-values
         sign_lvl = 0.1
 
-        # For the PLT deposition reduced simulations
+        # For the PLT random walk simulations
         distros_invECDF = []
         distros_tail    = []
         xmins           = []
@@ -717,7 +717,7 @@ def meta_process(tau):
                 print('_._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.')
                 print('One-Zone Simulation for optimal model.')
                 # int(4808*0.82): 4808 number of activated PLTs per ul (see Chopard_2017 - A physical description of the adhesion and aggregation of platelets). We deal with 0.82ul -> 4808*0.82
-                # tau is the time step of the reduced simulation in ms
+                # tau is the time step of the random walks in ms
                 # 820um is the height of Impact-R PLT function analyser (and thus the *0.82)
                 PLTs_ = PLTs(int(4808*0.82), tau, 820.0, [{'inv_ecdf':inv_ecdf, 'lb':ecdf(np.min(data)), 'ub':ecdf(np.max(data))}], [{'distro':distro, 'params':params_optimal}], [xmin_optimal])
                 try:

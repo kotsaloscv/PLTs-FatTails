@@ -17,12 +17,12 @@ python3 meta_process.py PLTs 1.0 distros 1 49 10 10 100 600 1 tBB 50 0.125 2
 
 1. PLTs: refers to the corpuscles to analyse (RBCs or PLTs).
 2. 1.0: is the sampling window in ms (see PLTs_tau_1.0).
-3. distros: refers to the type of analysis to do (MFP,distros,MSD,distrFromWalls).
+3. distros: refers to the type of analysis to do (**MFP**: Mean Free Path/Time, **distros**: PLT velocities distributions, **MSD**: Mean Square Displament & Diffusion Coefficient from DNS data, **distFromWalls**: average distance from walls from DNS data).
 4. 1 49: wall-bounded direction, positions of walls in um.
 5. 10 10: exclude this amount of um from the walls (avoid wall effects in the analysis).
-6. 300 600: The DNS (Direct Numerical Simulations) was executed for 1000 ms physical time. The analysis is done between 100 and 600 ms.
+6. 100 600: The DNS (Direct Numerical Simulations) was executed for 1000 ms physical time. The analysis is done between 100 and 600 ms.
 7. 1: refers to the numbers of zones to split the domain.
-8. tBB: top wall boundary condition.
+8. tBB: top wall boundary condition for the Random Walks.
 9. 50: channel lateral dimensions in um
 10. 0.125: DNS fluid time step in us, according to the Lattice Boltzmann Method.
 11. 2: number of cores to use in finding the tail lower bound (x_min).

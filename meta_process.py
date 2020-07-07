@@ -1,7 +1,7 @@
 ###############################################################################
 # This python script implements the statistical analysis presented in:
 # Kotsalos et al.: Anomalous Platelet Transport & Fat-Tailed Distributions
-# arXiv: 
+# https://arxiv.org/abs/2006.11755
 # 
 # It reads the positions of PLTs (center of mass) through time (stored in PLTs_tau_X directory)
 # Every file in the directory stores the individual trajectory of a PLT in the form: (t,x,y,z)

@@ -2,7 +2,7 @@
 
 ## Project
 
-This project implements the statistical analysis presented in: Kotsalos et al.: Anomalous Platelet Transport & Fat-Tailed Distributions (https://arxiv.org/abs/2006.11755). The python script (meta_process.py) is tailored on the tools developed by Kotsalos et al. (see: https://arxiv.org/abs/1911.03062, https://arxiv.org/abs/1903.06479). These tools for the direct numerical simulations of cellular blood flow are available as part of Palabos library (https://palabos.unige.ch/).
+This project implements the statistical analysis presented in Kotsalos et al.: Anomalous Platelet Transport & Fat-Tailed Distributions (https://arxiv.org/abs/2006.11755). The python script (meta_process.py) is tailored on the tools developed by Kotsalos et al. (see: https://arxiv.org/abs/1911.03062, https://arxiv.org/abs/1903.06479). These tools for the direct numerical simulations of cellular blood flow are available as part of Palabos library (https://palabos.unige.ch/).
 
 ## Execute the code
 
